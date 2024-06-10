@@ -23,8 +23,7 @@ before_script:
 
 build:
   # Use the official docker image.
-  stage: 
-    - build
+  stage: build
   
   script: 
     - docker compose up -d
