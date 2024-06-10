@@ -8,8 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
 *.local
 
 # Editor directories and files
@@ -83,7 +81,6 @@ eggs/
 lib/ 
 lib64/ 
 parts/ 
-sdist/ 
 var/ 
 wheels/ 
 *.whl
