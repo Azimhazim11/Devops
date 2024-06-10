@@ -39,6 +39,8 @@ test_job:
   script:
     - apk update
     - apk add python3 py3-pip
+    - python3 -m venv /venv
+    - source /venv/bin/activate
     - pip install pytest selenium
     - docker compose up -d
 
