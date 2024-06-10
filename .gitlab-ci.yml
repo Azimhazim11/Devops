@@ -9,25 +9,22 @@
 #
 # This template uses one generic job with conditional builds
 # for the default branch and all other (MR) branches.
-
-docker-build:
-  # Use the official docker image.
+default:
   image: docker:cli
-  stage: 
-    - build
-    
   services:
     - docker:dind
-  variables:
+
+variables:
     DOCKER_HOST: tcp://docker2375/
     DOCKER_DRIVER: overlay2
-  before_script:
+
+before_script:
     - docker -v
+
+build:
+  # Use the official docker image.
+  stage: 
+    - build
   
-  build:
-    stage: build
-    script: 
-      - docker compose up -d
-    artifacts:
-      path: 
-        - docker-compose.yml
+  script: 
+    - docker compose up -d
