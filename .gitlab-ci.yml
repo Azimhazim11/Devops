@@ -14,8 +14,8 @@ default:
   services:
     - docker:dind
 stages:
-  - test
   - build
+  - test
 
 variables:
     DOCKER_HOST: tcp://docker:2375/
@@ -34,16 +34,19 @@ build_job:
     paths:
       - docker-compose.yml
 
-  test_job:
-    stage: test
-    script:
-    - apk install update
-    - apk install python3
-    - apk install python3 py3-pip
+test_job:
+  stage: test
+  script:
+    - apk update
+    - apk add python3 py3-pip
+    - python3 -m venv /venv
+    - source /venv/bin/activate
     - pip install pytest selenium
     - docker compose up -d
+    - sleep 15
+    - python3 testfile.py
 
-    artifacts:
-      paths:
-        - docker-compose.yml
+  artifacts:
+    paths:
+      - testfile.py
 
