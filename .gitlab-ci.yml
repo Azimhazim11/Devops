@@ -33,3 +33,17 @@ build_job:
   artifacts:
     paths:
       - docker-compose.yml
+
+  test_job:
+    stage: test
+    script:
+    - apk install update
+    - apk install python3
+    - apk install python3 py3-pip
+    - pip install pytest selenium
+    - docker compose up -d
+
+    artifacts:
+      paths:
+        - docker-compose.yml
+
