@@ -14,8 +14,8 @@ default:
   services:
     - docker:dind
 stages:
-  - test
   - build
+  - test
 
 variables:
     DOCKER_HOST: tcp://docker:2375/
