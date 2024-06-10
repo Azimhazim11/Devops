@@ -37,9 +37,8 @@ build_job:
 test_job:
   stage: test
   script:
-    - apk install update
-    - apk install python3
-    - apk install python3 py3-pip
+    - apk update
+    - apk add python3 py3-pip
     - pip install pytest selenium
     - docker compose up -d
 
