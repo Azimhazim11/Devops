@@ -44,7 +44,7 @@ test_job:
     - pip install pytest selenium
     - docker compose up -d
     - sleep 15
-    - python3 testfile.py
+    - pytest testfile.py
 
   artifacts:
     paths:

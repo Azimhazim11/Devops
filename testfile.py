@@ -9,28 +9,15 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 class TestDevopstest():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome()
+    service = Service(ChromeDriverManager().install())
+    self.driver = webdriver.Chrome(service=service)
     self.vars = {}
   
-  def teardown_method(self, method):
-    self.driver.quit()
-  
-  def test_devopstest(self):
-    self.driver.get("http://localhost/")
-    self.driver.find_element(By.CSS_SELECTOR, "input").click()
-    self.driver.find_element(By.CSS_SELECTOR, "button").click()
-    self.driver.find_element(By.CSS_SELECTOR, "tr:nth-child(1) > td:nth-child(1)").click()
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-class TestDevopstest():
-  def setup_method(self, method):
-    self.driver = webdriver.Chrome()
-    self.vars = {}
   
   def teardown_method(self, method):
     self.driver.quit()
