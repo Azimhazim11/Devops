@@ -1,0 +1,52 @@
+services:
+
+  db:
+    image: mysql:oraclelinux9
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=DevOpsDB
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=amir
+      - MYSQL_PASSWORD=admin
+      - MYSQL_HOST=db
+    volumes:
+      - devops_class/DevopsClass/database:/var/lib/mysql
+    networks:
+      - mynetwork
+
+      
+  backend:
+    container_name: backend
+    build:
+      context: devops_class/DevopsClass
+    ports:
+      - "8000:8000"
+    volumes:
+      - devops_class/DevopsClass:/app
+    depends_on:
+      - db
+    environment:
+      - MYSQL_DATABASE=DevOpsDB
+      - MYSQL_USER=amir
+      - MYSQL_PASSWORD=admin
+      - MYSQL_HOST=db
+    networks:
+      - mynetwork
+    restart: on-failure
+    
+  
+  frontend:
+    build:
+      context: devops_class/DevopsClassFront/dist
+    container_name: frontend
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    name: mynetwork
+    external: true
