@@ -162,4 +162,5 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-devops_class/DevopsClass/database
+devops_class/
+database/
