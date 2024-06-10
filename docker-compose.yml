@@ -11,8 +11,6 @@ services:
       - MYSQL_USER=amir
       - MYSQL_PASSWORD=admin
       - MYSQL_HOST=db
-    volumes:
-      - ./DevopsClass/database:/var/lib/mysql
     networks:
       - mynetwork
 
@@ -23,8 +21,6 @@ services:
       context: ./DevopsClass
     ports:
       - "8000:8000"
-    volumes:
-      - ./DevopsClass:/app
     depends_on:
       - db
     environment:
