@@ -43,8 +43,10 @@ test_job:
     - source /venv/bin/activate
     - pip install pytest selenium
     - docker compose up -d
+    - sleep 15
+    - python3 testfile.py
 
   artifacts:
     paths:
-      - docker-compose.yml
+      - testfile.py
 
