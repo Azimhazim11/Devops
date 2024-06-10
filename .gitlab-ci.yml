@@ -13,6 +13,9 @@ default:
   image: docker:cli
   services:
     - docker:dind
+stages:
+  - test
+  - build
 
 variables:
     DOCKER_HOST: tcp://docker2375/
@@ -21,9 +24,12 @@ variables:
 before_script:
     - docker -v
 
-build:
+build_job:
   # Use the official docker image.
   stage: build
   
   script: 
     - docker compose up -d
+  artifacts:
+    paths:
+      - docker-compose.yml
