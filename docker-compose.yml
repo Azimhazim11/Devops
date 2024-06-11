@@ -1,18 +1,18 @@
 services:
 
   db:
-    image: mysql:oraclelinux9
+    image: postgres:alpine3.19
     container_name: db
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      - MYSQL_DATABASE=DevOpsDB
-      - MYSQL_ROOT_PASSWORD=admin
-      - MYSQL_USER=amir
-      - MYSQL_PASSWORD=admin
-      - MYSQL_HOST=db
+      - POSTGRES_DB=DevOpsDB
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=amir
     networks:
       - mynetwork
+    # volumes:
+    #   - ./DevopsClass/dB:/var/lib/postgresql/data
 
       
   backend:
@@ -24,10 +24,10 @@ services:
     depends_on:
       - db
     environment:
-      - MYSQL_DATABASE=DevOpsDB
-      - MYSQL_USER=amir
-      - MYSQL_PASSWORD=admin
-      - MYSQL_HOST=db
+      - POSTGRES_DB=DevOpsDB
+      - POSTGRES_USER=amir
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_HOST=db
     networks:
       - mynetwork
     restart: on-failure
@@ -35,7 +35,7 @@ services:
   
   frontend:
     build:
-      context: ./DevopsClassFront/dist
+      context: DevopsClassFront/dist
     container_name: frontend
     ports:
       - "80:80"
