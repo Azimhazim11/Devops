@@ -1,16 +1,30 @@
 services:
 
-  db:
-    image: postgres:alpine3.19
-    container_name: db
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=DevOpsDB
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_USER=amir
-    networks:
-      - mynetwork
+  # db:
+  #   image: postgres:alpine3.19
+  #   container_name: db
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_DB=DevOpsDB
+  #     - POSTGRES_PASSWORD=admin
+  #     - POSTGRES_USER=amir
+  #   networks:
+  #     - mynetwork
+  #   # volumes:
+  #   #   - ./DevopsClass/dB:/var/lib/postgresql/data
+  # db:
+  #   image: supabase:postgres
+  #   container_name: db
+  #   ports:
+  #     - "5432:5432"
+  #   command: postgres -c config_file=/etc/postgresql/postgresql.conf
+  #   environment:
+  #     - POSTGRES_DB=DevOpsDB
+  #     - POSTGRES_PASSWORD=admin
+  #     - POSTGRES_USER=amir
+  #   networks:
+  #     - mynetwork
     # volumes:
     #   - ./DevopsClass/dB:/var/lib/postgresql/data
 
@@ -21,13 +35,13 @@ services:
       context: ./DevopsClass
     ports:
       - "8000:8000"
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     environment:
-      - POSTGRES_DB=DevOpsDB
-      - POSTGRES_USER=amir
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_HOST=db
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres.tndyknnfetsvqbtfojmd
+      - POSTGRES_PASSWORD=VN2JbVlyj7t2jIln
+      - POSTGRES_HOST=aws-0-ap-southeast-1.pooler.supabase.com
     networks:
       - mynetwork
     restart: on-failure
