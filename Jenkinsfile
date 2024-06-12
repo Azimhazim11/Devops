@@ -15,7 +15,7 @@ pipeline {
                 // sh ". /venv/bin/activate"
                 // sh "pip install pytest selenium"
                 sh "docker compose up -d"
-                sh "python testfile.py"
+                sh "python3 testfile.py"
             }
         }
         stage('Deploy') {
