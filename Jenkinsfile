@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh "python3 -m venv .venv"
-                sh "source .venv/bin/activate | pip install pytest selenium | docker compose up -d | python3 testfile.py"
+                sh "python3 testfile.py | docker compose up -d | pip install pytest selenium | source .venv/bin/activate"
                 
             }
         }
