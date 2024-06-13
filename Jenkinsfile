@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent
 
     stages {
         stage('Build') {
@@ -12,8 +12,12 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh "python3 -m venv .venv"
-                sh "python3 testfile.py | docker compose up -d | pip install pytest selenium | source .venv/bin/activate"
-                
+                // sh "python3 testfile.py | docker compose up -d | pip install pytest selenium | source .venv/bin/activate"
+                sh "source .venv/bin/activate"
+                sh "pip install pytest selenium"
+                sh "docker compose up -d"
+                sh "python3 testfile.py"
+            
             }
         }
         stage('Deploy') {
