@@ -24,10 +24,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "git branch -M \"Pipeline\" "
-                sh "git add ."
-                sh "git commit -m \"from pipeline\" "
-                sh "git push origin frompipeline"
                 echo 'Deploying....'
             }
         }
