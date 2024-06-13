@@ -1,5 +1,10 @@
 pipeline {
-    agent
+    agent {
+  docker {
+    image 'python:3.9'
+    args '-u root --privileged'
+  }
+} 
 
     stages {
         stage('Build') {
